@@ -529,7 +529,7 @@ class DALLE(nn.Module):
 
             if is_raw_image:
                 image_size = self.vae.image_size
-                assert tuple(image.shape[1:]) == (3, image_size, image_size), f'invalid image of dimensions {image.shape} passed in during training'
+                #assert tuple(image.shape[1:]) == (3, image_size, image_size), f'invalid image of dimensions {image.shape} passed in during training'
 
                 image = self.vae.get_codebook_indices(image)
 
