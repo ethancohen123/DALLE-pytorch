@@ -269,6 +269,6 @@ class YttmTokenizer:
     
     
     
-    ################################## For molecules test ###########################
-    def tokenizer_molecules(max_lenght):
-        return AutoTokenizer.from_pretrained("seyonec/PubChem10M_SMILES_BPE_450k",max_len=max_lenght)
+################################## For molecules test ###########################
+def tokenizer_molecules(max_lenght):
+    return AutoTokenizer.from_pretrained("seyonec/PubChem10M_SMILES_BPE_450k",max_len=max_lenght)
