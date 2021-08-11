@@ -7,6 +7,8 @@ import youtokentome as yttm
 from tokenizers import Tokenizer
 from tokenizers.processors import ByteLevel
 from transformers import BertTokenizer
+from transformers import RobertaModel, RobertaTokenizer
+from transformers import AutoModelWithLMHead, AutoTokenizer, pipeline, RobertaModel, RobertaTokenizer
 
 import html
 import os
@@ -264,3 +266,9 @@ class YttmTokenizer:
             result[i, :len(tokens)] = torch.tensor(tokens)
 
         return result
+    
+    
+    
+    ################################## For molecules test ###########################
+    def tokenizer_molecules(max_lenght):
+        return AutoTokenizer.from_pretrained("seyonec/PubChem10M_SMILES_BPE_450k",max_len=max_lenght)
