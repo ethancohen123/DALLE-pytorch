@@ -9,7 +9,8 @@ from einops import rearrange
 
 from dalle_pytorch import distributed_utils, tokenizer
 from dalle_pytorch.vae import OpenAIDiscreteVAE, VQGanVAE
-from dalle_pytorch.transformer import Transformer, DivideMax
+from dalle_pytorch.transformer import Transformer, DivideMax,Mol_Encoder
+from dalle_pytorch.tokenizer import tokenizer_molecules
 
 # helpers
 
