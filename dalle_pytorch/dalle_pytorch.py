@@ -355,7 +355,21 @@ class DALLE(nn.Module):
         self.vae = vae
         set_requires_grad(self.vae, False) # freeze VAE from being trained
 
-        self.transformer = Mol_Encoder()
+        self.transformer = Transformer(
+            dim = dim,
+            causal = True,
+            seq_len = seq_len,
+            depth = depth,
+            heads = heads,
+            dim_head = dim_head,
+            reversible = reversible,
+            attn_dropout = attn_dropout,
+            ff_dropout = ff_dropout,
+            attn_types = attn_types,
+            image_fmap_size = image_fmap_size,
+            sparse_attn = sparse_attn,
+            stable = stable
+        )
 
         self.stable = stable
 
