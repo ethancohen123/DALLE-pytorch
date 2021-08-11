@@ -1,8 +1,10 @@
 from functools import partial
 from itertools import islice, cycle
-
+import transformers
+from transformers import RobertaForMaskedLM
 import torch
 from torch import nn, einsum
+from torch.nn import Identity
 import torch.nn.functional as F
 from einops import rearrange
 
@@ -140,3 +142,20 @@ class Transformer(nn.Module):
 
     def forward(self, x, **kwargs):
         return self.layers(x, **kwargs)
+
+    
+    
+    
+    #### For molecules test ##
+    class Mol_Encoder(torch.nn.Module):
+        def __init__(self):
+            super(Mol_Encoder, self).__init__()
+            self.model_mol = RobertaForMaskedLM.from_pretrained("seyonec/PubChem10M_SMILES_BPE_450k")
+            self.model_mol.lm_head=Identity()
+
+        def forward(self, input_ids, attention_mask):
+            output_1 = self.model_mol(input_ids=input_ids, attention_mask=attention_mask)
+            hidden_state = output_1[0]
+            pooler = hidden_state[:, 0,:]
+
+            return pooler
